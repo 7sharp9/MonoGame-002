@@ -93,7 +93,7 @@ module AnimatedSprite =
 type Game2 () as this =
     inherit Game()
 
-    let graphics = new GraphicsDeviceManager(this)
+    let graphics = new GraphicsDeviceManager(this, PreferredBackBufferWidth = 1920, PreferredBackBufferHeight = 1080)
     let mutable spriteBatch = Unchecked.defaultof<_>
     let mutable playerSpriteSheet = Unchecked.defaultof<Texture2D>
     let mutable player = Unchecked.defaultof<Sprite>
@@ -116,7 +116,7 @@ type Game2 () as this =
 
     do
         this.Content.RootDirectory <- "Content"
-        this.IsMouseVisible <- true
+        this.IsMouseVisible <- false
 
     override this.Initialize() =
         let frameSize = Point(64, 64)
@@ -199,7 +199,7 @@ type Game2 () as this =
     override this.Draw (gameTime) =
         this.GraphicsDevice.Clear Color.CornflowerBlue
         spriteBatch.Begin()
-        player.Draw(spriteBatch)
+        //player.Draw(spriteBatch)
         AnimatedSprite.draw newPlayer gameTime spriteBatch
         spriteBatch.End()
         base.Draw(gameTime)
